@@ -54,10 +54,11 @@
         this.$refs[name].validate((valid) => {
           console.log(self.formInline);
           if (valid) {
-            this.$axios({
-              url: '/api/login',
-              method: 'post',
-              data: self.formInline,
+            this.$axios.get('api/login',{
+              params:{
+                userName:self.formInline.userName,
+                password:self.formInline.password
+              }
             }).then(res=>{
               console.log(res);
               this.$router.push({name:'Index'});
